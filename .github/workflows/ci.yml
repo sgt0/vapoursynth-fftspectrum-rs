@@ -1,0 +1,94 @@
+name: CI
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  attestations: write
+  contents: read
+  id-token: write
+
+jobs:
+  build-release:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        target-cpu: [x86-64, raptorlake, znver4]
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            ext: so
+          - os: windows-latest
+            target: x86_64-pc-windows-gnu
+            ext: dll
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            ext: dylib
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1.10.1
+        with:
+          target: ${{ matrix.target }}
+          toolchain: nightly
+
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }}
+        env:
+          RUSTFLAGS: -C target-cpu=${{ matrix.target-cpu }}
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v1.4.4
+        if: ${{ github.event_name == 'push' }}
+        with:
+          subject-path: target/${{ matrix.target }}/release/*fftspectrum_rs.${{ matrix.ext }}
+
+      - name: Upload
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: fftspectrum_rs-${{ matrix.target }}-${{ matrix.target-cpu }}
+          path: target/${{ matrix.target }}/release/*fftspectrum_rs.${{ matrix.ext }}
+
+  clippy:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1.10.1
+        with:
+          components: clippy
+          toolchain: nightly
+
+      - name: Run Clippy
+        run: cargo clippy
+
+  rustfmt:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1.10.1
+        with:
+          components: rustfmt
+          toolchain: nightly
+
+      - name: Run rustfmt
+        uses: actions-rust-lang/rustfmt@v1.1.1
+
+  cargo-shear:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - uses: cargo-bins/cargo-binstall@v1.10.17
+
+      - run: cargo binstall --no-confirm cargo-shear
+
+      - run: cargo shear

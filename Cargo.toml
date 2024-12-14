@@ -1,0 +1,54 @@
+[package]
+name = "fftspectrum_rs"
+version = "1.0.0"
+license = "MIT"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+const-str = "0.5.7"
+ndarray = "0.16.1"
+rustfft = "6.2.0"
+vapours = { git = "https://github.com/sgt0/vapours.git", rev = "d3e63531d7849303742b40db672752c03579017a" }
+vapoursynth4-rs = { git = "https://github.com/inflation/vapoursynth4-rs", rev = "05216423fb4316bf29f4e592ffc12c5a6e61bc25" }
+
+[profile.release]
+codegen-units = 1
+lto = true
+
+[profile.release-debug]
+inherits = "release"
+debug = true
+
+[lints.rust]
+deprecated_safe = "warn"
+improper_ctypes = "warn"
+improper_ctypes_definitions = "warn"
+non_ascii_idents = "warn"
+rust_2018_idioms = "warn"
+single_use_lifetimes = "warn"
+unreachable_pub = "warn"
+unsafe_op_in_unsafe_fn = "warn"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+perf = { level = "warn", priority = -1 }
+
+as_underscore = "warn"
+default_union_representation = "warn"
+inline_asm_x86_att_syntax = "warn"
+undocumented_unsafe_blocks = "warn"
+
+cast_possible_truncation = { level = "allow", priority = 1 }
+cast_possible_wrap = { level = "allow", priority = 1 }
+cast_sign_loss = { level = "allow", priority = 1 }
+module_name_repetitions = { level = "allow", priority = 1 }
+redundant_pub_crate = { level = "allow", priority = 1 }
+similar_names = { level = "allow", priority = 1 }
+too_many_arguments = { level = "allow", priority = 1 }
+too_many_lines = { level = "allow", priority = 1 }
+unreadable_literal = { level = "allow", priority = 1 }
