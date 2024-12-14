@@ -11,7 +11,7 @@ jobs:
   build-release:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest, macos-15]
         target-cpu: [x86-64, raptorlake, znver4]
         include:
           - os: ubuntu-latest
@@ -20,8 +20,12 @@ jobs:
           - os: windows-latest
             target: x86_64-pc-windows-gnu
             ext: dll
-          - os: macos-latest
+          - os: macos-15
             target: x86_64-apple-darwin
+            ext: dylib
+          - os: macos-15
+            target: aarch64-apple-darwin
+            target-cpu: apple-m4
             ext: dylib
     runs-on: ${{ matrix.os }}
     steps:
@@ -33,6 +37,9 @@ jobs:
         with:
           target: ${{ matrix.target }}
           toolchain: nightly
+
+      - name: Print available CPUs
+        run: rustup run nightly rustc --print target-cpus
 
       - name: Build
         run: cargo build --release --target ${{ matrix.target }}
