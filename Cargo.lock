@@ -22,7 +22,7 @@ checksum = "3618cccc083bb987a415d85c02ca6c9994ea5b44731ec28b9ecf09658655fba9"
 
 [[package]]
 name = "fftspectrum_rs"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "const-str",
  "ndarray",
