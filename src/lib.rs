@@ -178,7 +178,7 @@ declare_plugin!(
   "sgt.fftspectrum_rs",
   "fftspectrum_rs",
   "FFT frequency spectrum.",
-  (0, 0),
+  (1, 0),
   VAPOURSYNTH_API_VERSION,
   0,
   (FftSpectrumFilter, None)
