@@ -32,12 +32,12 @@ impl Filter for FftSpectrumFilter {
   type FilterData = ();
 
   fn create(
-    input: &MapRef,
-    output: &mut MapRef,
+    input: MapRef<'_>,
+    output: MapRef<'_>,
     _data: Option<Box<Self::FilterData>>,
     mut core: CoreRef<'_>,
   ) -> Result<(), Self::Error> {
-    let Ok(node) = input.get_video_node(key!("clip"), 0) else {
+    let Ok(node) = input.get_video_node(key!(c"clip"), 0) else {
       return Err(cstr!("fftspectrum_rs: failed to get clip.").to_owned());
     };
 
@@ -58,10 +58,10 @@ impl Filter for FftSpectrumFilter {
       return Err(cstr!("fftspectrum_rs: expected float input.").to_owned());
     }
 
-    let mut filter = Self { node };
+    let filter = Self { node };
 
     let deps = [FilterDependency {
-      source: filter.node.as_mut_ptr(),
+      source: filter.node.as_ptr(),
       request_pattern: RequestPattern::StrictSpatial,
     }];
 
@@ -175,9 +175,9 @@ impl Filter for FftSpectrumFilter {
 }
 
 declare_plugin!(
-  "sgt.fftspectrum_rs",
-  "fftspectrum_rs",
-  "FFT frequency spectrum.",
+  c"sgt.fftspectrum_rs",
+  c"fftspectrum_rs",
+  c"FFT frequency spectrum.",
   (1, 0),
   VAPOURSYNTH_API_VERSION,
   0,
