@@ -11,8 +11,8 @@ crate-type = ["cdylib"]
 const-str = "0.5.7"
 ndarray = "0.16.1"
 rustfft = "6.2.0"
-vapours = { git = "https://github.com/sgt0/vapours.git", rev = "d3e63531d7849303742b40db672752c03579017a" }
-vapoursynth4-rs = { git = "https://github.com/inflation/vapoursynth4-rs", rev = "05216423fb4316bf29f4e592ffc12c5a6e61bc25" }
+vapours = { git = "https://github.com/sgt0/vapours.git", rev = "39ccb6aabb705dda72b46396d23bcf80d2d9e8ab" }
+vapoursynth4-rs = "0.3.0"
 
 [profile.release]
 codegen-units = 1
