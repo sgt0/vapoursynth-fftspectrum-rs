@@ -6,6 +6,12 @@ A faster FFT spectrum [VapourSynth][] plugin.
 
 ## Install
 
+Via [vsrepo][]:
+
+```
+vsrepo install fftspectrum_rs
+```
+
 Manually: download a release from the [Releases][] page and unzip
 `fftspectrum_rs.dll` (Windows), `libfftspectrum_rs.so` (Linux), or
 `libfftspectrum_rs.dylib` (macOS) into a [plugins directory][plugin-autoloading].
@@ -107,5 +113,6 @@ $ RUSTFLAGS="-C target-cpu=native" cargo build --release
 ```
 
 [VapourSynth]: https://www.vapoursynth.com
+[vsrepo]: https://github.com/vapoursynth/vsrepo
 [Releases]: https://github.com/sgt0/vapoursynth-fftspectrum-rs/releases
 [plugin-autoloading]: https://www.vapoursynth.com/doc/installation.html#plugin-autoloading
