@@ -386,8 +386,9 @@ checksum = "7dd6e30e90baa6f72411720665d41d89b9a3d039dc45b8faea1ddd07f617f6af"
 
 [[package]]
 name = "vapours"
-version = "0.0.0"
-source = "git+https://github.com/sgt0/vapours.git?rev=39ccb6aabb705dda72b46396d23bcf80d2d9e8ab#39ccb6aabb705dda72b46396d23bcf80d2d9e8ab"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e76c7763c472e1431c1e439f180210514ee4ff99788c742f9ca549212989b5d3"
 dependencies = [
  "const-str",
  "miette",

@@ -11,7 +11,7 @@ crate-type = ["cdylib"]
 const-str = "0.5.7"
 ndarray = "0.16.1"
 rustfft = "6.2.0"
-vapours = { git = "https://github.com/sgt0/vapours.git", rev = "39ccb6aabb705dda72b46396d23bcf80d2d9e8ab" }
+vapours = "0.1.0"
 vapoursynth4-rs = "0.3.0"
 
 [profile.release]
