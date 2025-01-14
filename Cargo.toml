@@ -11,7 +11,7 @@ crate-type = ["cdylib"]
 const-str = "0.5.7"
 ndarray = "0.16.1"
 rustfft = "6.2.0"
-vapours = "0.1.0"
+vapours = "0.1.1"
 vapoursynth4-rs = "0.3.0"
 
 [profile.release]
