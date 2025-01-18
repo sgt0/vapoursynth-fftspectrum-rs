@@ -32,7 +32,7 @@ node.
 
 ## Benchmark
 
-On 1080p clips, this plugin is about 1.9 times faster than
+On 1080p YUV420 clips, this plugin is about 1.9 times faster than
 `fftspectrum.FFTSpectrum()`. This is mostly accomplished by minimizing the
 number of allocations, copies, and transposes done.
 
