@@ -1,7 +1,7 @@
 use std::ffi::{c_void, CStr, CString};
 
 use const_str::cstr;
-use ndarray::{s, Array, ArrayViewMut};
+use ndarray::{s, Array, ArrayViewMut, ShapeBuilder};
 use rustfft::{num_complex::Complex, FftDirection, FftPlanner};
 use vapours::{frame::VapoursVideoFrame, vs_enums::GRAYS};
 use vapoursynth4_rs::{
@@ -94,11 +94,12 @@ impl Filter for FftSpectrumFilter {
         let src = self.node.get_frame_filter(n, &mut ctx);
         let width = src.frame_width(0) as usize;
         let height = src.frame_height(0) as usize;
+        let stride = src.stride(0) as usize / size_of::<f32>();
 
         let mut dst = core.new_video_frame(&GRAYS, width as i32, height as i32, Some(&src));
 
         // Prepare complex numbers matrix.
-        let shape = (height, width);
+        let shape = (height, width).strides((stride, 1));
         let src_complex: Vec<Complex<f64>> = src
           .as_slice::<f32>(0)
           .iter()
@@ -107,11 +108,27 @@ impl Filter for FftSpectrumFilter {
         let mut src_arr =
           Array::from_shape_vec(shape, src_complex).expect("should create array from slice");
 
+        // Make the array contiguous if it's not already. This only happens with
+        // certain dimensions; for example, consider the U plane of a 720x480
+        // YUV420 frame. Its dimensions are 360x240, but the stride is 368.
+        // Since this isn't equal to the width, the array won't be contiguous,
+        // but we need a contiguous array in order to create slices for the FFT
+        // library.
+        //
+        // Since this is a copy it certainly hurts performance, but only for the
+        // above special case.
+        if !src_arr.is_standard_layout() {
+          src_arr = src_arr.to_owned();
+        }
+
         // FFT each row.
         let mut planner = FftPlanner::new();
         let fft_width = planner.plan_fft(width, FftDirection::Forward);
         let mut scratch = vec![Complex::default(); fft_width.get_inplace_scratch_len()];
-        fft_width.process_with_scratch(src_arr.as_slice_mut().unwrap(), &mut scratch);
+        fft_width.process_with_scratch(
+          src_arr.as_slice_mut().expect("should get mutable slice"),
+          &mut scratch,
+        );
 
         // FFT each column.
         // Parallelizing this loop was slower in benchmarks.
@@ -138,8 +155,8 @@ impl Filter for FftSpectrumFilter {
         // center at the same time. Skipping an intermediate array like this
         // significantly cuts down the processing time.
         let dst_slice = dst.as_mut_slice::<f32>(0);
-        let mut dst_arr = ArrayViewMut::from_shape((height, width), dst_slice)
-          .expect("should create array from slice");
+        let mut dst_arr =
+          ArrayViewMut::from_shape(shape, dst_slice).expect("should create array from slice");
 
         // Bottom-right => top-left.
         dst_arr
