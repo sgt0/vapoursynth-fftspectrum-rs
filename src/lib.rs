@@ -146,10 +146,16 @@ impl Filter for FftSpectrumFilter {
         let half_height = height / 2;
         let half_width = width / 2;
 
-        let top_left = src_arr.slice(s![..half_height, ..half_width]);
-        let top_right = src_arr.slice(s![..half_height, half_width..]);
-        let bottom_left = src_arr.slice(s![half_height.., ..half_width]);
-        let bottom_right = src_arr.slice(s![half_height.., half_width..]);
+        // For odd heights, we let the top two quadrants have one more row than
+        // the bottom two quadrants. Similarly for odd widths, the left two
+        // quadrants have one more column than the right two quadrants.
+        let odd_height = height % 2;
+        let odd_width = width % 2;
+
+        let top_left = src_arr.slice(s![..half_height + odd_height, ..half_width + odd_width]);
+        let top_right = src_arr.slice(s![..half_height + odd_height, half_width + odd_width..]);
+        let bottom_left = src_arr.slice(s![half_height + odd_height.., ..half_width + odd_width]);
+        let bottom_right = src_arr.slice(s![half_height + odd_height.., half_width + odd_width..]);
 
         // Write to output frame while also shifting low frequencies to the
         // center at the same time. Skipping an intermediate array like this
