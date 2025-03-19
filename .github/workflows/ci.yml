@@ -53,7 +53,7 @@ jobs:
           subject-path: target/${{ matrix.target }}/release/*fftspectrum_rs.${{ matrix.ext }}
 
       - name: Upload
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: fftspectrum_rs-${{ matrix.target }}-${{ matrix.target-cpu }}
           path: target/${{ matrix.target }}/release/*fftspectrum_rs.${{ matrix.ext }}
