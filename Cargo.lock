@@ -88,7 +88,7 @@ dependencies = [
  "ndarray",
  "rustfft",
  "vapours",
- "vapoursynth4-rs",
+ "vapoursynth4-rs 0.3.0",
 ]
 
 [[package]]
@@ -276,9 +276,9 @@ checksum = "f7c45b9784283f1b2e7fb61b42047c2fd678ef0960d4f6f1eba131594cc369d4"
 
 [[package]]
 name = "seq-macro"
-version = "0.3.5"
+version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a3f0bf26fd526d2a95683cd0f87bf103b8539e2ca1ef48ce002d67aad59aa0b4"
+checksum = "1bc711410fbe7399f390ca1c3b60ad0f53f80e95c5eb935e52268a0e2cd49acc"
 
 [[package]]
 name = "strength_reduce"
@@ -333,11 +333,11 @@ dependencies = [
 
 [[package]]
 name = "thiserror"
-version = "2.0.11"
+version = "2.0.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d452f284b73e6d76dd36758a0c8684b1d5be31f92b89d07fd5822175732206fc"
+checksum = "567b8a2dae586314f7be2a752ec7474332959c6460e02bde30d702a66d488708"
 dependencies = [
- "thiserror-impl 2.0.11",
+ "thiserror-impl 2.0.12",
 ]
 
 [[package]]
@@ -353,9 +353,9 @@ dependencies = [
 
 [[package]]
 name = "thiserror-impl"
-version = "2.0.11"
+version = "2.0.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "26afc1baea8a989337eeb52b6e72a039780ce45c3edfcc9c5b9d112feeb173c2"
+checksum = "7f7cf42b4507d8ea322120659672cf1b9dbb93f8f2d4ecfd6e51350ff5b17a1d"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -386,9 +386,9 @@ checksum = "7dd6e30e90baa6f72411720665d41d89b9a3d039dc45b8faea1ddd07f617f6af"
 
 [[package]]
 name = "vapours"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d8e0b8f5ef1f0cadb487648e63d9552447cc708bf1820fbb174b91a4d35dc6f8"
+checksum = "226632245e83fd09b040ed6d06b253bb8ae09c10cbd72a355a7b71ebf525dbe1"
 dependencies = [
  "const-str",
  "miette",
@@ -397,8 +397,8 @@ dependencies = [
  "seq-macro",
  "strum",
  "strum_macros",
- "thiserror 2.0.11",
- "vapoursynth4-rs",
+ "thiserror 2.0.12",
+ "vapoursynth4-rs 0.4.0",
 ]
 
 [[package]]
@@ -408,15 +408,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ebb75c2210955363ce9d51a6e7bc1aeb8538e41b211510b0dae21aa84bdf96ff"
 dependencies = [
  "bon",
- "thiserror 2.0.11",
+ "thiserror 2.0.12",
+ "vapoursynth4-sys",
+]
+
+[[package]]
+name = "vapoursynth4-rs"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bfa78ec1691906d1b420bb0aa4d10ace574e3e581039de06a72b81b760e4e4c5"
+dependencies = [
+ "bon",
+ "thiserror 2.0.12",
  "vapoursynth4-sys",
 ]
 
 [[package]]
 name = "vapoursynth4-sys"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fdaec418acfe8b470c8accd7104dfb6c10662cccb886bbda1997589d72c1d7ad"
+checksum = "af0894deef5988131fe6a6e1057aa91ea719e92108fdd77e66ce474177ac4146"
 
 [[package]]
 name = "version_check"
