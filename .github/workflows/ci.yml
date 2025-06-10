@@ -94,7 +94,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
 
-      - uses: cargo-bins/cargo-binstall@v1.12.6
+      - uses: cargo-bins/cargo-binstall@v1.13.0
 
       - run: cargo binstall --no-confirm cargo-shear
 
