@@ -8,7 +8,7 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-const-str = "0.6.3"
+const-str = "0.6.4"
 ndarray = "0.16.1"
 rustfft = "6.4.0"
 vapours = "0.1.5"
