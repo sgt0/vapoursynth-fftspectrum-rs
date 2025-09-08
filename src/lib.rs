@@ -1,10 +1,11 @@
-use std::ffi::{c_void, CStr, CString};
+use std::ffi::{CStr, CString, c_void};
 
 use const_str::cstr;
-use ndarray::{s, Array, ArrayViewMut, ShapeBuilder};
-use rustfft::{num_complex::Complex, FftDirection, FftPlanner};
+use ndarray::{Array, ArrayViewMut, ShapeBuilder, s};
+use rustfft::{FftDirection, FftPlanner, num_complex::Complex};
 use vapours::{frame::VapoursVideoFrame, vs_enums::GRAYS};
 use vapoursynth4_rs::{
+  SampleType,
   core::CoreRef,
   declare_plugin,
   frame::{FrameContext, VideoFrame},
@@ -13,7 +14,6 @@ use vapoursynth4_rs::{
   node::{
     ActivationReason, Dependencies, Filter, FilterDependency, Node, RequestPattern, VideoNode,
   },
-  SampleType,
 };
 
 #[inline]
