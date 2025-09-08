@@ -2,17 +2,20 @@
 name = "fftspectrum_rs"
 version = "1.0.9"
 license = "MIT"
-edition = "2021"
+edition = "2024"
 
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
-const-str = "0.6.4"
-ndarray = "0.16.1"
-rustfft = "6.4.0"
-vapours = "0.1.5"
-vapoursynth4-rs = "0.3.0"
+const-str = "=0.7.0"
+ndarray = "=0.16.1"
+rustfft = "=6.4.0"
+vapours = "=0.2.3"
+vapoursynth4-rs = "=0.4.0"
+
+[patch.crates-io]
+vapoursynth4-rs = { git = "https://github.com/inflation/vapoursynth4-rs", rev = "5685213b75cef2c8ae3e49ed60c71cb7258bc1a5" }
 
 [profile.release]
 codegen-units = 1
@@ -29,6 +32,8 @@ improper_ctypes_definitions = "warn"
 non_ascii_idents = "warn"
 rust_2018_idioms = "warn"
 single_use_lifetimes = "warn"
+unexpected_cfgs = { level = "warn", check-cfg = [] }
+unnameable_types = "warn"
 unreachable_pub = "warn"
 unsafe_op_in_unsafe_fn = "warn"
 
