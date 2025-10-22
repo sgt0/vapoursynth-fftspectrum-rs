@@ -32,7 +32,7 @@ node.
 
 ## Benchmark
 
-On 1080p YUV420 clips, this plugin is about 1.9 times faster than
+On 1080p clips, this plugin is about 2.2 times faster than
 `fftspectrum.FFTSpectrum()`. This is mostly accomplished by minimizing the
 number of allocations, copies, and transposes done.
 
@@ -70,32 +70,32 @@ set_output(src_32.fftspectrum_rs.FFTSpectrum(), "fftspectrum_rs")
 ```bash
 $ hyperfine --warmup 1 'vspipe test.py --end 1999 -o {output_node} .' -P output_node 0 2
 Benchmark 1: vspipe test.py --end 1999 -o 0 .
-  Time (mean ± σ):     33.475 s ±  0.952 s    [User: 8.109 s, System: 0.141 s]
-  Range (min … max):   32.464 s … 34.973 s    10 runs
+  Time (mean ± σ):     31.878 s ±  0.853 s    [User: 44.497 s, System: 1.592 s]
+  Range (min … max):   30.672 s … 33.681 s    10 runs
 
 Benchmark 2: vspipe test.py --end 1999 -o 1 .
-  Time (mean ± σ):     49.710 s ±  1.287 s    [User: 18.153 s, System: 6.534 s]
-  Range (min … max):   47.882 s … 51.389 s    10 runs
+  Time (mean ± σ):     62.379 s ±  1.839 s    [User: 59.013 s, System: 22.801 s]
+  Range (min … max):   59.342 s … 64.992 s    10 runs
 
 Benchmark 3: vspipe test.py --end 1999 -o 2 .
-  Time (mean ± σ):     17.547 s ±  0.071 s    [User: 232.575 s, System: 7.808 s]
-  Range (min … max):   17.433 s … 17.640 s    10 runs
+  Time (mean ± σ):     13.909 s ±  0.146 s    [User: 178.334 s, System: 18.904 s]
+  Range (min … max):   13.669 s … 14.166 s    10 runs
 
 Summary
   vspipe test.py --end 1999 -o 2 . ran
-    1.91 ± 0.05 times faster than vspipe test.py --end 1999 -o 0 .
-    2.83 ± 0.07 times faster than vspipe test.py --end 1999 -o 1 .
+    2.29 ± 0.07 times faster than vspipe test.py --end 1999 -o 0 .
+    4.48 ± 0.14 times faster than vspipe test.py --end 1999 -o 1 .
 ```
 
 | Benchmark         | Mean (fps)    | Range (fps)     |
 | ----------------- | ------------- | --------------- |
-| fftspectrum       | 59.74 ± 1.70  | 57.18 … 58.03   |
-| numpy ModifyFrame | 40.23 ± 1.04  | 38.91 … 41.76   |
-| fftspectrum_rs    | 113.97 ± 0.46 | 113.37 … 114.72 |
+| fftspectrum       | 62.74 ± 1.68  | 59.38 … 65.21   |
+| numpy ModifyFrame | 32.06 ± 0.95  | 30.77 … 33.70   |
+| fftspectrum_rs    | 143.79 ± 1.51 | 141.18 … 146.32 |
 
 ## Build
 
-Rust v1.83.0-nightly and cargo may be used to build the project. Older versions
+Rust v1.91.0-nightly and cargo may be used to build the project. Older versions
 will likely work fine but they aren't explicitly supported.
 
 ```bash
