@@ -100,7 +100,7 @@ jobs:
           toolchain: nightly
 
       - name: Run rustfmt
-        uses: actions-rust-lang/rustfmt@v1.1.1
+        uses: actions-rust-lang/rustfmt@v1.1.2
 
   cargo-shear:
     runs-on: ubuntu-24.04
