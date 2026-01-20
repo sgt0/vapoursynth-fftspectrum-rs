@@ -11,7 +11,7 @@ crate-type = ["cdylib"]
 const-str = "=0.7.1"
 ndarray = "=0.17.2"
 rustfft = "=6.4.1"
-vapours = "=0.2.3"
+vapours = "=0.2.4"
 vapoursynth4-rs = "=0.4.0"
 
 [patch.crates-io]
