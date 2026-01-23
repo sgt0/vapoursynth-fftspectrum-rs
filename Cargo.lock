@@ -41,12 +41,6 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "const-str"
-version = "0.7.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b0664d2867b4a32697dfe655557f5c3b187e9b605b38612a748e5ec99811d160"
-
-[[package]]
-name = "const-str"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "93e19f68b180ebff43d6d42005c4b5f046c65fcac28369ba8b3beaad633f9ec0"
@@ -90,7 +84,7 @@ dependencies = [
 name = "fftspectrum_rs"
 version = "1.0.10"
 dependencies = [
- "const-str 0.7.1",
+ "const-str",
  "ndarray",
  "rustfft",
  "vapours",
@@ -373,7 +367,7 @@ version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "939358091fadb40d8fc441253d7e77d7ce0cb7ea64b031a5262779ba4d14c8b5"
 dependencies = [
- "const-str 1.0.0",
+ "const-str",
  "miette",
  "num-derive",
  "num-traits",
