@@ -61,7 +61,7 @@ jobs:
           RUSTFLAGS: -C target-cpu=${{ matrix.target-cpu }}
 
       - name: Attest build provenance
-        uses: actions/attest-build-provenance@v3.1.0
+        uses: actions/attest-build-provenance@v3.2.0
         if: ${{ github.event_name == 'push' }}
         with:
           subject-path: target/${{ matrix.target }}/release/*fftspectrum_rs.${{ matrix.ext }}
