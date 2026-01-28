@@ -82,7 +82,7 @@ dependencies = [
 
 [[package]]
 name = "fftspectrum_rs"
-version = "1.0.10"
+version = "1.0.11"
 dependencies = [
  "const-str",
  "ndarray",
