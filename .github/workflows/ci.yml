@@ -109,7 +109,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Install cargo-shear
-        uses: taiki-e/install-action@4573997e3b6c0fbc22f7acab193b00a8a3ca817d # v2.67.24
+        uses: taiki-e/install-action@d4422f254e595ee762a758628fe4f16ce050fa2e # v2.67.28
         with:
           tool: cargo-shear
 
