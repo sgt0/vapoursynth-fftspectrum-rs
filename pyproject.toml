@@ -1,6 +1,6 @@
 [project]
 name = "fftspectrum_rs"
-version = "1.0.11"
+version = "1.0.12"
 description = "A faster FFT spectrum VapourSynth plugin."
 readme = "README.md"
 license = "MIT"

@@ -4,7 +4,7 @@ requires-python = ">=3.12"
 
 [[package]]
 name = "fftspectrum-rs"
-version = "1.0.11"
+version = "1.0.12"
 source = { editable = "." }
 dependencies = [
     { name = "vapoursynth" },
