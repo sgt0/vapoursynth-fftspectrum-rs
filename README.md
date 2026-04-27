@@ -15,9 +15,6 @@ vsrepo install fftspectrum_rs
 Manually: download a release from the [Releases][] page and unzip
 `fftspectrum_rs.dll` (Windows), `libfftspectrum_rs.so` (Linux), or
 `libfftspectrum_rs.dylib` (macOS) into a [plugins directory][plugin-autoloading].
-There are separate artifacts for Raptor Lake (`*-raptorlake.zip`) and
-AMD Zen 4 (`*-znver4.zip`) CPUs which may or may not have better performance
-than the plain x86_64 build.
 
 ## API
 
