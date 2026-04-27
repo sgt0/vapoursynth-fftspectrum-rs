@@ -3,17 +3,6 @@ revision = 3
 requires-python = ">=3.12"
 
 [[package]]
-name = "fftspectrum-rs"
-version = "1.0.12"
-source = { editable = "." }
-dependencies = [
-    { name = "vapoursynth" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "vapoursynth", specifier = ">=74" }]
-
-[[package]]
 name = "vapoursynth"
 version = "74"
 source = { registry = "https://pypi.org/simple" }
@@ -27,3 +16,14 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/ff/12/fcca0d43852f0ceabbc0546bd7b44510b13cab51519a85c8fa63b144d85c/vapoursynth-74-cp312-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:f49d39c25d18fb4c6ad2aaae24a553151a249b21697dd932cf95b59161d64ca0", size = 2818948, upload-time = "2026-04-05T16:06:06.093Z" },
     { url = "https://files.pythonhosted.org/packages/03/94/9fa885a22d19581584754f1a55b0a98b6ebb0477bd90ef725621e4576a5b/vapoursynth-74-cp312-abi3-win_amd64.whl", hash = "sha256:157e2789069d13769277c6f284422648f82e467f6ab45409183e9134ab191b80", size = 6576864, upload-time = "2026-04-05T16:06:08.147Z" },
 ]
+
+[[package]]
+name = "vapoursynth-fftspectrum-rs"
+version = "1.0.12"
+source = { editable = "." }
+dependencies = [
+    { name = "vapoursynth" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "vapoursynth", specifier = ">=74" }]
