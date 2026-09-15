@@ -12,7 +12,7 @@ const-str = "=1.1.0"
 ndarray = "=0.17.2"
 rustfft = "=6.4.1"
 vapours = "=0.2.5"
-vapoursynth4-rs = "=0.4.0"
+vapoursynth4-rs = "=0.5.1"
 
 [patch.crates-io]
 vapoursynth4-rs = { git = "https://github.com/inflation/vapoursynth4-rs", rev = "5685213b75cef2c8ae3e49ed60c71cb7258bc1a5" }
