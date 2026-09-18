@@ -33,4 +33,4 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "vapoursynth", specifier = ">=76" }]
+requires-dist = [{ name = "vapoursynth", specifier = ">=80" }]
