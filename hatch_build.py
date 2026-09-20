@@ -25,7 +25,7 @@ LIB_PREFIXES = {
 }
 
 
-class CustomHook(BuildHookInterface[Any]):
+class CustomHook(BuildHookInterface[Any, Any]):
     target_dir = Path("vapoursynth/plugins/fftspectrum_rs")
 
     def initialize(self, version: str, build_data: dict[str, Any]) -> None:
